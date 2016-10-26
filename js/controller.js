@@ -494,9 +494,17 @@ var emailController = function(){
 
 		that.constructBody = function(foods, nonfoods){
 		
-			var style = 'style=\"border:1px solid black;\"';
+			var style = 'style=\"border: 1px solid black\"';
 		
-			var msg = '<table ' + style + '>';
+			var msg = '<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">';
+			msg += '<html xmlns=\"http://www.w3.org/1999/xhtml\">';
+			msg += '<head>';
+			msg += '<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />';
+			msg += '<title>Grocery List</title>';
+			msg += '<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>';
+			msg += '</head>';
+			msg += '<body>';
+			msg += '<table ' + style + '>';
 			msg += '<tr><th ' + style + '>Food</th></tr>';
 			for(var i=0; i<foods.length; i++){
 				msg += '<tr><td ' + style + '>' + '<input type=\'checkbox\'>' + foods[i].getTitle() + '</td></tr>';
@@ -508,7 +516,7 @@ var emailController = function(){
 			for(var i=0; i<nonfoods.length; i++){
 				msg += '<tr><td ' + style + '>' + '<input type=\'checkbox\'>' + nonfoods[i].getTitle() + '</td></tr>';
 			}
-			msg += '</table>';
+			msg += '</table></body></html>';
 
 			return msg;
 		
@@ -517,9 +525,9 @@ var emailController = function(){
 		that.sendList = function(msg){
 		
 		    var link = "mailto:clifrunsalot@yahoo.com"
-		             + "?cc="
+		             + "?cc=joanndances@hotmail.com"
 		             + "&subject=" + "Grocery List"
-		             + "&body=" + msg;
+		             + "&body=" + encodeURIComponent(msg);
 		
 		    window.location.href = link;
 		    
