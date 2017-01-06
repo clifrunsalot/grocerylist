@@ -1,170 +1,169 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-<meta charset="utf-8" />
-<title>My Shopping Buddy</title>
+    <meta charset="utf-8" />
+    <title>My Shopping Buddy</title>
 
-	<!-- Include meta tag to ensure proper rendering and touch zooming -->
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Include meta tag to ensure proper rendering and touch zooming -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<!-- Include jQuery Mobile stylesheets -->
-	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <!-- Include jQuery Mobile stylesheets -->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 
-	<!-- Include the jQuery library -->
-	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Include the jQuery library -->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-	<!-- Include the jQuery Mobile library -->
-	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!-- Include the jQuery Mobile library -->
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
-	<!-- App javascript libraries -->
-	<script src="js/msb_data.js"></script>
-	<script src="js/item.js"></script>
-	<script src="js/groceries.js"></script>
-	<script src="js/controller.js"></script>
-	<script src="js/sourceData.js"></script>
-	
-	<script>
-	
-	var cntl;
-	
-	$(document).on("pagecreate",function(){
+    <!-- App javascript libraries -->
+    <script src="js/msb_data.js"></script>
+    <script src="js/item.js"></script>
+    <script src="js/groceries.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/sourceData.js"></script>
 
-		$("#logout").click(function(){
-			if(confirm("Close?")){
-				window.close();
-			}
-		});
-		
-		$("#resetList").click(function(){
-			cntl.reloadGroceries();
-		});
+    <script>
+        var cntl;
 
-		$("#clearList").click(function(lstId){
-			cntl.clear();
-		});
-		
-		$("#addIt").click(function(){
-			cntl.addDefaultItemToList();
-			$('#defaultItem').panel('close');
-		});
-		
-		$("#createIt").click(function(){
-			cntl.addNewItemToList();
-			$('#newItem').panel('close');
-		});
-		
-		$("#editSaveIt").click(function(){
-			cntl.saveItemChanges();
-			$('#editAnItem').panel('close');
-		});
-		
-		$("#sendList").click(function(){
-			cntl.sendList();
-		});
-		 
-		cntl = controller();
-		cntl.preloadData();
-		cntl.clear();
-		
-	});
-		
-	</script>
-		
+        $(document).on("pagecreate", function () {
+
+            $("#logout").click(function () {
+                if (confirm("Close?")) {
+                    window.close();
+                }
+            });
+
+            $("#resetList").click(function () {
+                cntl.reloadGroceries();
+            });
+
+            $("#clearList").click(function (lstId) {
+                cntl.clear();
+            });
+
+            $("#addIt").click(function () {
+                cntl.addDefaultItemToList();
+                $('#defaultItem').panel('close');
+            });
+
+            $("#createIt").click(function () {
+                cntl.addNewItemToList();
+                $('#newItem').panel('close');
+            });
+
+            $("#editSaveIt").click(function () {
+                cntl.saveItemChanges();
+                $('#editAnItem').panel('close');
+            });
+
+            $("#sendList").click(function () {
+                cntl.sendList();
+            });
+
+            cntl = controller();
+            cntl.preloadData();
+            cntl.clear();
+
+        });
+    </script>
+
 </head>
 
 <body>
 
-<div data-role="page" id="pageone">
+    <div data-role="page" id="pageone">
 
-	<!-- Add default item panel -->
-	<div data-role="panel" data-display="overlay" data-position='right' id="defaultItem">
-		<h3>Select Below</h3>
-		<div id="selectItems" data-role="main" class="ui-content">
-			<fieldset id="fieldItems">
-				<label for="foodGroupsSelection" class="select"></label>
-				<select name="foodGroupsSelection" id="foodGroupsSelection">
-				</select>
-			</fieldset>
-		</div>
-		<a id="addIt" href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-min">Add It</a>
-	</div>
+        <!-- Add default item panel -->
+        <div data-role="panel" data-display="overlay" data-position='right' id="defaultItem">
+            <h3>Select Below</h3>
+            <div id="selectItems" data-role="main" class="ui-content">
+                <fieldset id="fieldItems">
+                    <label for="foodGroupsSelection" class="select"></label>
+                    <select name="foodGroupsSelection" id="foodGroupsSelection">
+                    </select>
+                </fieldset>
+            </div>
+            <a id="addIt" href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-min">Add It</a>
+        </div>
 
-	<!-- Add new item panel -->
-	<div data-role="panel" data-display="overlay" data-position='right' id="newItem">
-		<h3>Enter Item</h3>
-		<div id="createNewItem" data-role="main" class="ui-content">
-		<form>
-			<label for="itemName">Item Name:</label>
-			<input type="text" name="itemName" id="itemName" data-clear-btn="true" value="">
-			<label for="typeSelection" class="select"></label>
-			<select name="typeSelection" id="typeSelection">
-				<option value="Food">Food</option>
-				<option value="Nonfood">NonFood</option>
-			</select>
-			<label for="itemQty">Quantity:</label>
-			<input type="number" name="itemQty" id="itemQty" data-clear-btn="true" value="">
-			<label for="itemPricePerUnit">Price:</label>
-			<input type="number" name="itemPricePerUnit" id="itemPricePerUnit" data-clear-btn="true" value="">
-		</form>
-		</div>
-		<a id="createIt" href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-min">Add It</a>
-	</div>
+        <!-- Add new item panel -->
+        <div data-role="panel" data-display="overlay" data-position='right' id="newItem">
+            <h3>Enter Item</h3>
+            <div id="createNewItem" data-role="main" class="ui-content">
+                <form>
+                    <label for="itemName">Item Name:</label>
+                    <input type="text" name="itemName" id="itemName" data-clear-btn="true" value="">
+                    <label for="typeSelection" class="select"></label>
+                    <select name="typeSelection" id="typeSelection">
+                        <option value="Food">Food</option>
+                        <option value="Nonfood">NonFood</option>
+                    </select>
+                    <label for="itemQty">Quantity:</label>
+                    <input type="number" name="itemQty" id="itemQty" data-clear-btn="true" value="">
+                    <label for="itemPricePerUnit">Price:</label>
+                    <input type="number" name="itemPricePerUnit" id="itemPricePerUnit" data-clear-btn="true" value="">
+                </form>
+            </div>
+            <a id="createIt" href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-min">Add It</a>
+        </div>
 
-	<!-- edit item panel -->
-	<div data-role="panel" data-display="overlay" data-position='right' id="editAnItem">
-		<h3>Enter Item</h3>
-		<div id="editExistingItem" data-role="main" class="ui-content">
-		<form>
-			<label for="editName">Item Name:</label>
-			<input type="text" name="editName" id="editName" data-clear-btn="true" value="">
-			<label for="editType">Item Type:</label>
-			<input type="text" name="editType" id="editType" data-clear-btn="true" value="" disabled>
-			<label for="editQty">Quantity:</label>
-			<input type="number" name="editQty" id="editQty" data-clear-btn="true" value="">
-			<label for="editPricePerUnit">Price:</label>
-			<input type="number" name="editPricePerUnit" id="editPricePerUnit" data-clear-btn="true" value="">
-			<label for="editSelected">Selected</label>
-			<input type="checkbox" name="editSelected" id="editSelected" data-clear-btn="true" value="">
-		</form>
-		</div>
-		<a id="editSaveIt" href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-min">Save</a>
-	</div>
+        <!-- edit item panel -->
+        <div data-role="panel" data-display="overlay" data-position='right' id="editAnItem">
+            <h3>Enter Item</h3>
+            <div id="editExistingItem" data-role="main" class="ui-content">
+                <form>
+                    <label for="editName">Item Name:</label>
+                    <input type="text" name="editName" id="editName" data-clear-btn="true" value="">
+                    <label for="editType">Item Type:</label>
+                    <input type="text" name="editType" id="editType" data-clear-btn="true" value="" disabled>
+                    <label for="editQty">Quantity:</label>
+                    <input type="number" name="editQty" id="editQty" data-clear-btn="true" value="">
+                    <label for="editPricePerUnit">Price:</label>
+                    <input type="number" name="editPricePerUnit" id="editPricePerUnit" data-clear-btn="true" value="">
+                    <label for="editSelected">Selected</label>
+                    <input type="checkbox" name="editSelected" id="editSelected" data-clear-btn="true" value="">
+                </form>
+            </div>
+            <a id="editSaveIt" href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-min">Save</a>
+        </div>
 
-	<!-- Header section -->
-	<div data-role="header">
-		<h1>My Shopping Buddy</h1>
-	    <a id="logout" href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-right">Logout</a>
-		<div data-role="navbar">
-			<ul>
-				<li><a id="resetList" data-icon="back" href="#">Load Default List</a></li>
-				<li><a id="clearList" data-icon="delete" href="#">Clear List</a></li>
-				<li><a id="addDefaultItem" data-icon="plus" href="#defaultItem">Add Item</a></li>
-				<li><a id="addNewItem" data-icon="plus" href="#newItem">Create Item</a></li>
-				<li><a id="sendList" data-icon="mail" href="#">Send List</a></li>
-			</ul>
-		</div>
-	</div>
-	
-	<!-- Main section -->
-	<div data-role="main" class="ui-content">	
+        <!-- Header section -->
+        <div data-role="header">
+            <h1>My Shopping Buddy</h1>
+            <a id="logout" href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-right">Logout</a>
+            <div data-role="navbar">
+                <ul>
+                    <li><a id="resetList" data-icon="back" href="#">Load Default List</a></li>
+                    <li><a id="clearList" data-icon="delete" href="#">Clear List</a></li>
+                    <li><a id="addDefaultItem" data-icon="plus" href="#defaultItem">Add Item</a></li>
+                    <li><a id="addNewItem" data-icon="plus" href="#newItem">Create Item</a></li>
+                    <li><a id="sendList" data-icon="mail" href="#">Send List</a></li>
+                </ul>
+            </div>
+        </div>
 
-	    <form class="ui-filterable">
-	      <input id="myFilter" data-type="search">
-	    </form>
-	
-		<div data-role="main" class="ui-content">
-			<h2>Food</h2>
-			<div id='foodDiv'></div>
-		</div>
-		
-		<div data-role="main" class="ui-content">
-			<h2>Non-Food</h2>
-			<div id='nonfoodDiv'></div>
-		</div>
-		
+        <!-- Main section -->
+        <div data-role="main" class="ui-content">
+
+            <form class="ui-filterable">
+                <input id="myFilter" data-type="search">
+            </form>
+
+            <div data-role="main" class="ui-content">
+                <h2>Food</h2>
+                <div id='foodDiv'></div>
+            </div>
+
+            <div data-role="main" class="ui-content">
+                <h2>Non-Food</h2>
+                <div id='nonfoodDiv'></div>
+            </div>
+
+        </div>
+
     </div>
-
-</div>
 
 </body>
 
