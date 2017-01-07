@@ -2,72 +2,16 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <title>My Shopping Buddy</title>
-
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Include meta tag to ensure proper rendering and touch zooming -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>My Shopping Buddy</title>
 
     <!-- Include jQuery Mobile stylesheets -->
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 
-    <!-- Include the jQuery library -->
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-    <!-- Include the jQuery Mobile library -->
-    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-
-    <!-- App javascript libraries -->
-    <script src="js/msb_data.js"></script>
-    <script src="js/item.js"></script>
-    <script src="js/groceries.js"></script>
-    <script src="js/controller.js"></script>
-    <script src="js/sourceData.js"></script>
-
-    <script>
-        var cntl;
-
-        $(document).on("pagecreate", function () {
-
-            $("#logout").click(function () {
-                if (confirm("Close?")) {
-                    window.close();
-                }
-            });
-
-            $("#resetList").click(function () {
-                cntl.reloadGroceries();
-            });
-
-            $("#clearList").click(function (lstId) {
-                cntl.clear();
-            });
-
-            $("#addIt").click(function () {
-                cntl.addDefaultItemToList();
-                $('#defaultItem').panel('close');
-            });
-
-            $("#createIt").click(function () {
-                cntl.addNewItemToList();
-                $('#newItem').panel('close');
-            });
-
-            $("#editSaveIt").click(function () {
-                cntl.saveItemChanges();
-                $('#editAnItem').panel('close');
-            });
-
-            $("#sendList").click(function () {
-                cntl.sendList();
-            });
-
-            cntl = controller();
-            cntl.preloadData();
-            cntl.clear();
-
-        });
-    </script>
 
 </head>
 
@@ -164,6 +108,65 @@
         </div>
 
     </div>
+
+
+    <!-- Include the jQuery library -->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Include the jQuery Mobile library -->
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <!-- App javascript libraries -->
+    <script src="js/msb_data.js"></script>
+    <script src="js/item.js"></script>
+    <script src="js/groceries.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/sourceData.js"></script>
+
+    <script>
+        var cntl;
+
+        $(document).on("pagecreate", function () {
+
+            $("#logout").click(function () {
+                if (confirm("Close?")) {
+                    window.close();
+                }
+            });
+
+            $("#resetList").click(function () {
+                cntl.reloadGroceries();
+            });
+
+            $("#clearList").click(function () {
+                cntl.clear();
+            });
+
+            $("#addIt").click(function () {
+                cntl.addDefaultItemToList();
+                $('#defaultItem').panel('close');
+            });
+
+            $("#createIt").click(function () {
+                cntl.addNewItemToList();
+                $('#newItem').panel('close');
+            });
+
+            $("#editSaveIt").click(function () {
+                cntl.saveItemChanges();
+                $('#editAnItem').panel('close');
+            });
+
+            $("#sendList").click(function () {
+                cntl.sendList();
+            });
+
+            cntl = controller();
+            cntl.preloadData();
+            cntl.clear();
+
+        });
+    </script>
 
 </body>
 

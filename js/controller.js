@@ -253,6 +253,7 @@ var controller = function () {
         foods = groceries.getFoodItems;
         nonfoods = groceries.getNonfoodItems;
         that.setGroceries(grocerylist());
+        $('#' + lstId).listview().listview('refresh');
     };
 
     that.getGroceries = function () {
@@ -588,11 +589,8 @@ var emailController = function () {
         that = {};
         body = '';
         msg = '';
-        console.log("before construction");
 
         that.constructBody = function (foods, nonfoods) {
-
-            console.log("constructing email");
 
             var style = 'style=\"border:1px solid black;\"';
 
@@ -617,8 +615,6 @@ var emailController = function () {
         };
 
         that.sendList = function (msg) {
-
-            console.log("inside emailController.sendList");
 
             var link = "mailto:clifrunsalot@yahoo.com" + "?cc=" + "&subject=" + "Grocery List" + "&body=" + msg;
 
